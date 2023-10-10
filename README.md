@@ -25,6 +25,11 @@
   Maintenance and Preventation System (MaPS) merupakan salah satu solusi yang telah diimplementasikan oleh perusahaan melalui unit Airport Technology Section untuk mengelola data pemeliharaan dan pencegahan dalam lingkungan kebandarudaraan yang dinamis. Melalui sistem ini dapat dilakukan pengumpulan, pengelolaan dan analisis data tentang pemeliharaan teknologi bandar udara yang lebih efisien. MaPS memudahkan perusahaan untuk meningkatkan efektivitas kegiatan operasional dan implementasi ‘Smart Airport’ dengan cara memantau kondisi alat teknologi, mengidentifikasi potensi masalah, dan respon tanggap terhadap permasalahan teknis. 
 </p>
 
+## Feature Development
+<p align="justify">
+  Fitur yang dibangun merupakan bagian dari sistem MaPS yang dikembangkan dengan fungsi visualisasi data persentase kesiapan alat dari data pemeliharaan. Pada fitur logbook, menyajikan tabel data yang lebih detail seperti persentase pelaksanaan aktivitas pemeliharaan yang dilakukan sehingga dapat diketahui frekuensi dari aktivitas tersebut apakah terdapat kendala atau tidak. Berikut merupakan rancang bangun sistem dari fitur logbook pemeliharaan dalam aplikasi MaPS berbasis website
+</p>
+
 ## Technology / Tools
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
