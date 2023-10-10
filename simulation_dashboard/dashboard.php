@@ -112,22 +112,59 @@
                     <div class="container" style="max-width: auto; margin-top: 50px;">
                         <div class="row">
                             <div class="col-12">
+                            <?php
+                                    $mysqli = new mysqli("localhost", "root", "", "logbook");
+
+                                    // Periksa koneksi
+                                    if ($mysqli->connect_error) {
+                                        die("Koneksi gagal: " . $mysqli->connect_error);
+                                    }
+                                    
+                                    // Inisialisasi variabel nama_alat dan nama_merk
+                                    $nama_alat = "";
+                                    $nama_merk = "";
+                                    
+                                    // Mengambil id_alat dan id_merk dari parameter URL jika tersedia
+                                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                        $id_alat = $_POST['id_alat'];
+                                        $id_merk = $_POST['id_merk'];
+                                    
+                                        // Query untuk mengambil nama alat dan merk berdasarkan id_alat dan id_merk
+                                        $sql = "SELECT alat.nama_alat, merk.nama_merk 
+                                                FROM ck_hari
+                                                INNER JOIN alat ON ck_hari.id_alat = alat.id_alat
+                                                INNER JOIN merk ON ck_hari.id_merk = merk.id_merk
+                                                WHERE ck_hari.id_alat = $id_alat AND ck_hari.id_merk = $id_merk";
+                                    
+                                        $result = $mysqli->query($sql);
+                                    
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                $nama_alat = $row["nama_alat"];
+                                                $nama_merk = $row["nama_merk"];
+                                            }
+                                        } else {
+                                            $nama_alat = "Alat tidak ditemukan";
+                                            $nama_merk = "Merk tidak ditemukan";
+                                        }
+                                    }
+                                    
+                                    $mysqli->close();                            
+                                ?>
+                                <dl class="row">
+                                    <dt class="col-sm-2">Nama Alat :</dt>
+                                    <dd class="col-sm-10"><?php echo $nama_alat; ?></dd>
+
+                                    <dt class="col-sm-2">Nama Merk :</dt>
+                                    <dd class="col-sm-10"><?php echo $nama_merk; ?></dd>
+                                </dl>
                                 <figure class="highcharts-figure">
-                    
                                     <div id="gauge"></div>
                                 </figure>
                                 <!-- <button id="toggleTahunan" class="btn btn-primary float-end" style="background: none; border: none;">
                                     <i class="fa fa-chevron-down" style="font-size:24px; color:black;"></i>
                                 </button> -->
                             </div>
-                            <!-- <div class="col-6">
-                                <figure class="highcharts-figure">
-                                    <div id="gauge2"></div>
-                                </figure>
-                                <button id="toggleMingguan" class="btn btn-primary float-end" style="background: none; border: none;">
-                                    <i class="fa fa-chevron-down" style="font-size:24px; color:black;"></i>
-                                </button>
-                            </div> -->
                         </div>
                     </div>
 
@@ -136,12 +173,9 @@
                     <div class="container" id="containerTahunan" style="display: none;">
                         <!-- Tabel Persentase Harian -->
                         <h2 id="tahunan">Persentase Tahunan</h2>
-                        <!-- <a href="addHarian.php" class="btn btn-primary float-end float-end">
-                            <i class='bx bxs-plus-circle'></i>
-                            <span class="text">Tambah Data</span>
-                        </a> -->
                         <br>
                         <br>
+                        
                         <table id="tabelTahunan" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -162,26 +196,6 @@
                                         $id_alat = $_POST['id_alat'];
                                         $id_merk = $_POST['id_merk'];
                                     }
-
-                                    // if (!empty($id_alat) && !empty($id_merk)) {
-                                    //     // Filter data berdasarkan ID alat
-                                    //     $sql = "(
-                                    //         SELECT * FROM ck_hari WHERE id_alat = '$id_alat'
-                                    //     ) UNION (
-                                    //         SELECT * FROM ck_minggu WHERE id_alat = '$id_alat'
-                                    //     ) UNION (
-                                    //         SELECT * FROM ck_bulan WHERE id_alat = '$id_alat'
-                                    //     ) ORDER BY tanggal ASC";
-                                    // } else {
-                                    //     // Jika ID alat tidak diisi, ambil semua data
-                                    //     $sql = "(
-                                    //         SELECT * FROM ck_hari
-                                    //     ) UNION (
-                                    //         SELECT * FROM ck_minggu 
-                                    //     ) UNION (
-                                    //         SELECT * FROM ck_bulan
-                                    //     ) ORDER BY tanggal ASC";
-                                    // }
 
                                     // Untuk memfilter berdasarkan variabel id_alat dan id_merk
                                     if (!empty($id_alat) && !empty($id_merk)) {
@@ -317,7 +331,9 @@
         
         var rataRataPersentase = Math.round(totalPersentase / data.length);
 
-        var judulGrafik = 'Persentase Kesiapan Alat (Tahunan)'
+        var judul = 'Persentase Kesiapan Alat (Tahunan)';
+
+        var judulGrafik = judul
 
         // Highchart Gauge Chart
         Highcharts.chart('gauge', {
@@ -391,22 +407,9 @@
                 enabled: false
             }
         });
-
     </script>
 
     <script>
-        // Memeriksa persentase harian dan menampilkan alert jika <= 80
-        // $(document).ready(function () {
-        //     $("#tabelTahunan tbody tr").each(function () {
-        //         var persentase = parseFloat($(this).find(".progress-bar").attr("aria-valuenow"));
-        //         if (persentase <= 80) {
-        //             var tanggal = $(this).find("td:first-child").text().trim();
-        //             var alertMessage = "Warning! Persentase alat pada " + tanggal + " kurang dari 80 %";
-        //             showAlert(alertMessage, this); // Menambahkan 'this' sebagai argumen
-        //         }
-        //     });
-        // });
-
         function updateDateTime() {
             var currentDate = new Date();
             var dayOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -419,30 +422,8 @@
             $("#currentTime").text(currentTime);
         }
 
-        // Update the day and time initially and every second
         updateDateTime();
-        setInterval(updateDateTime, 1000); // Update every second
-
-        // function showAlert(message, tableRow) {
-        //     // Mengambil catatan dari tabel harian atau mingguan
-        //     var catatan = $(tableRow).find("td:nth-child(4)").text().trim();
-
-        //     var alertHTML = '<div class="alert alert-warning alert-dismissible fade show" role="alert">' +
-        //         '<div class="d-flex align-items-center">' +
-        //         '<span class="btn btn-link float-end disable" data-toggle="collapse" data-target="#alertContent">' +
-        //         '<i class="bi bi-exclamation-triangle-fill" style="color: red;"></i>' +
-        //         '</span>' +
-        //         message +
-        //         '</div>' +
-        //         '<div class="catatan" style="margin-left: 45px;font-weight: 600; color: red;">' +
-        //         catatan +
-        //         '</div>' +
-        //         '</div>';
-
-        //     // Menambahkan alert di bawah baris tabel yang memenuhi kriteria
-        //     $(tableRow).find("td:first-child").after(alertHTML);
-        // }
-
+        setInterval(updateDateTime, 1000);
     </script>
 </body>
 </html>
