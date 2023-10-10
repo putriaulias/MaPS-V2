@@ -22,12 +22,12 @@
 
 ## Main Project
 <p align="justify">  
-  Maintenance and Preventation System (MaPS) merupakan salah satu solusi yang telah diimplementasikan oleh perusahaan melalui unit Airport Technology Section untuk mengelola data pemeliharaan dan pencegahan dalam lingkungan kebandarudaraan yang dinamis. Melalui sistem ini dapat dilakukan pengumpulan, pengelolaan dan analisis data tentang pemeliharaan teknologi bandar udara yang lebih efisien. MaPS memudahkan perusahaan untuk meningkatkan efektivitas kegiatan operasional dan implementasi ‘Smart Airport’ dengan cara memantau kondisi alat teknologi, mengidentifikasi potensi masalah, dan respon tanggap terhadap permasalahan teknis. 
+  Maintenance and Prevention System (MaPS) is one of the solutions that has been implemented by the company through the Airport Technology Section unit to manage maintenance and prevention data in a dynamic airport environment. Through this system, data can be collected, managed and analyzed regarding more efficient airport technology maintenance. MaPS makes it easier for companies to increase the effectiveness of operational activities and implementation of 'Smart Airport' by monitoring the condition of technological equipment, identifying potential problems, and responding responsively to technical problems.
 </p>
 
 ## Feature Development
 <p align="justify">
-  Fitur yang dibangun merupakan bagian dari sistem MaPS yang dikembangkan dengan fungsi visualisasi data persentase kesiapan alat dari data pemeliharaan. Pada fitur logbook, menyajikan tabel data yang lebih detail seperti persentase pelaksanaan aktivitas pemeliharaan yang dilakukan sehingga dapat diketahui frekuensi dari aktivitas tersebut apakah terdapat kendala atau tidak. Berikut merupakan rancang bangun sistem dari fitur logbook pemeliharaan dalam aplikasi MaPS berbasis website
+  The features built are part of the MaPS system which was developed with a data visualization function on the percentage of equipment readiness from maintenance data. The logbook feature presents a more detailed data table such as the percentage of maintenance activities carried out so that you can know the frequency of these activities whether there are problems or not. The following is the system design for the maintenance logbook feature in the website-based MaPS application
 </p>
 
 ## Technology / Tools
