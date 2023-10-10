@@ -122,7 +122,7 @@
                                                         </td>
                                                         <td style='display: none;'>" . $row["keterangan"] . "</td>
                                                         <td style='text-align: center;' class='h-25'>
-                                                            <img src='img/". $row["gambar"] ."'>
+                                                            <img src='img/". $row["gambar"] ."' style='max-width: 150px; max-height: 150px;'>
                                                         </td>
                                                     </tr>";
                                                     $day_number++;
