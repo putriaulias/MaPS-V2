@@ -116,7 +116,7 @@
                                     <div id="gauge"></div>
                                 </figure>
                                 <button id="toggleHarian" class="btn btn-primary float-end" style="background: none; border: none;">
-                                    <i class="fa fa-chevron-down" style="font-size:24px; color:black;"></i> <!-- Ikon collapse -->
+                                    <i class="fa fa-chevron-down" style="font-size:24px; color:black;"></i>
                                 </button>
                             </div>
                         </div>
@@ -202,6 +202,7 @@
                                 <?php
                                     // Buat koneksi ke database
                                     $conn = new mysqli("localhost", "root", "", "logbook");
+                                    
                                     // Periksa koneksi
                                     if ($conn->connect_error) {
                                         die("Koneksi gagal: " . $conn->connect_error);
